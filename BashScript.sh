@@ -1,14 +1,19 @@
 # Sample code to make sure that code within the if .. fi is executed
 
-if [ 1 -eq 1 ]; then
-	echo "Start server"
-	python3 ./querytest.py
-fi;
+echo -e "\t\t\tNo more fear of commitment...messages"
+cat bunny.txt
+echo -e "\n"
+
+#if [ 1 -eq 1 ]; then
+#	echo "Start server"
+#	python3 ./querytest.py
+#fi;
 
 userName=$(git config user.name)
-echo $userName
+#echo $userName
 
 modifiedExtensions=$(git status | grep modified| grep -Poi '\.(.*)$')
-echo $modifiedExtensions
+#echo $modifiedExtensions
 
-python3 ./LoopOver.py $modifiedExtensions
+mostCommonExtension=$(python3 ./LoopOver.py $modifiedExtensions)
+#echo $mostCommonExtension

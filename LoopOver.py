@@ -23,7 +23,7 @@ def most_common(L):
 if __name__ == '__main__':
 
     if (len(sys.argv) <= 1):
-            exit(1);
+            exit(1)
 
-    list = sys.argv[1:];
-    print(most_common(list));
+    list = sys.argv[1:]
+    print(str(most_common(list))[1:])
