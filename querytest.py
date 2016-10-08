@@ -29,6 +29,7 @@ def get_data(page, amount):
     'author.email == committer.email as isCommitterAuthor, committer.time_sec as commitTime, (committer.time_sec-author.time_sec) as timeDiff ' +
     'FROM [bigquery-public-data:github_repos.commits] LIMIT ' + str(amount) + ' OFFSET ' + str(offset))
 
+
     # Check if the query has finished running.
     #blululuul
     #time.sleep(5)
