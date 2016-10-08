@@ -4,7 +4,6 @@ import os
 import markovify
 import sys
 
-
 def train():
     for root, dirs, files in os.walk("messages/"):
         for file in files:
@@ -22,6 +21,8 @@ def train():
                     json.dump(text_model.chain.to_json(), write_file)
                 except IndexError:
                     pass
+
+train()
 
 
 def generate(extension):
