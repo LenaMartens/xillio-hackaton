@@ -24,4 +24,4 @@ while True:
     if(len(most_trending) <= 20):
         break;
 
-api.update_status(status=sys.argv[1:] + '  ' +most_trending)
+api.update_status(status=sys.argv[1] + '  ' +most_trending)
