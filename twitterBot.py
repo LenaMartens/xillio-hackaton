@@ -15,6 +15,9 @@ nearestPlace = api.trends_closest(lat=52.223756, long=5.176539)
 
 trends = api.trends_place(id = nearestPlace[0]["woeid"])
 
-most_trending = random.choice(trends[0]["trends"])["name"]
-print(most_trending)
+while True:
+    most_trending = random.choice(trends[0]["trends"])["name"]
+    if(len(most_trending) <= 20):
+        break;
+
 api.update_status(status=sys.argv[1] + '  ' +most_trending)
