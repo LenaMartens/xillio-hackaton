@@ -24,5 +24,3 @@ tweet=$(python3 ./markov_text.py $mostCommonExtension)
 echo $tweet
 
 git commit -m "$tweet"
-git pull
-git push
