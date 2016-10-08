@@ -34,3 +34,4 @@ time.sleep(5)
 results = client.get_query_rows(job_id)
 
 print(results)
+

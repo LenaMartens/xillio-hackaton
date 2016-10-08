@@ -1,3 +1,7 @@
-import neurolab as nl
+from .clustering import partially_cluster
 
-net = nl.net.new
+def stream_data_to_cluster():
+    # get data
+    data = []
+    data = list_to_matrix(data)
+    cl = partially_cluster(cl, data)
