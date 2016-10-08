@@ -9,7 +9,7 @@ def train():
     for root, dirs, files in os.walk("messages/"):
         for file in files:
             # Get raw text as string.
-            with open("messages/"+file) as f:
+            with open("messages/" + file) as f:
                 text = f.read()
 
             # Build the model.
@@ -25,17 +25,23 @@ def train():
 
 
 def generate(extension):
-    text_model = json.load(open("models/"+extension+".json"))
+    text_model = json.load(open("models/" + extension + ".json"))
     model = markovify.Text.from_chain(text_model)
+    found = False
+    while not found:
+        sentence = model.make_short_sentence(120, tries=1000)
+        if sentence.find("@") == -1 and sentence != "None":
+            found = True
     print(model.make_short_sentence(120, tries=1000))
+
 
 
 '''
 filter on None and @
 '''
-
 if __name__ == "__main__":
-    extension = sys.argv[1]
+    try:
+        extension = sys.argv[1]
+    except IndexError:
+        extension = "None"
     generate(extension)
-
-
