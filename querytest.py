@@ -20,17 +20,21 @@ json_key = 'key.json'
 
 client = get_client(json_key_file=json_key, readonly=True)
 
-# Submit an async query.
-job_id, _results = client.query('SELECT subject as commitMessage, REGEXP_EXTRACT(difference.new_path,r\'([a-zA-Z]*)\..*\') as fileName, REGEXP_EXTRACT(difference.new_path,r\'\.(.*)$\') as extension, ' +
-'author.email == committer.email as isCommitterAuthor, committer.time_sec as commitTime, (committer.time_sec-author.time_sec) as timeDiff ' +
-'FROM [bigquery-public-data:github_repos.commits] LIMIT 100')
 
-# Check if the query has finished running.
-complete, row_count = client.check_job(job_id)
-#blululuul
-time.sleep(5)
+def get_data(page, amount):
 
-# Retrieve the results.
-results = client.get_query_rows(job_id)
+    offset = (page - 1) * amount
+    # Submit an async query.
+    job_id, _results = client.query('SELECT subject as commitMessage, REGEXP_EXTRACT(difference.new_path,r\'([a-zA-Z]*)\..*\') as fileName, REGEXP_EXTRACT(difference.new_path,r\'\.(.*)$\') as extension, ' +
+    'author.email == committer.email as isCommitterAuthor, committer.time_sec as commitTime, (committer.time_sec-author.time_sec) as timeDiff ' +
+    'FROM [bigquery-public-data:github_repos.commits] LIMIT ' + str(amount) + ' OFFSET ' + str(offset))
 
-print(results)
+    # Check if the query has finished running.
+    complete, row_count = client.check_job(job_id)
+    #blululuul
+    time.sleep(5)
+
+    # Retrieve the results.
+    results = client.get_query_rows(job_id)
+
+    return results
