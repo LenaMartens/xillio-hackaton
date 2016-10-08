@@ -1,5 +1,6 @@
 import tweepy
 import sys
+import random
 
 if len(sys.argv) < 2:
     print("error")
@@ -14,6 +15,6 @@ nearestPlace = api.trends_closest(lat=52.223756, long=5.176539)
 
 trends = api.trends_place(id = nearestPlace[0]["woeid"])
 
-most_trending = (trends[0]["trends"][0]["name"])
+most_trending = random.choice(trends[0]["trends"])["name"]
 print(most_trending)
-api.update_status(status=sys.argv[1] + ' ' +most_trending)
+api.update_status(status=sys.argv[1] + '  ' +most_trending)
