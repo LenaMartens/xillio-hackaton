@@ -4,7 +4,7 @@ import random
 
 # Small script that takes its input and tweets it out with a random trending hashtag
 #Check if we have a text to tweet
-if len(sys.argv) < 2 or len(sys.argv[1] < 1):
+if len(sys.argv) < 2 or len(sys.argv[1]) < 1:
     print("error")
     exit(1)
 
