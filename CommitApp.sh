@@ -11,6 +11,7 @@ git add .
 userName=$(git config user.name)
 #echo $userName
 
+# Three possible suffixes for changed files
 modifiedExtensions=$(git status | grep 'modified\|new file\|deleted'| grep -Poi '\.(.*)$')
 #echo $modifiedExtensions
 
