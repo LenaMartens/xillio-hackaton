@@ -47,4 +47,4 @@ def get_data(page, amount):
 
     return results
 
-print(get_data(1,1000))
+#print(get_data(1,1000))
