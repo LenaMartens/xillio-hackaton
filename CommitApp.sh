@@ -10,10 +10,13 @@ echo -e "\n"
 #fi;
 
 userName=$(git config user.name)
-#echo $userName
+echo $userName
 
 modifiedExtensions=$(git status | grep modified| grep -Poi '\.(.*)$')
-#echo $modifiedExtensions
+echo $modifiedExtensions
 
 mostCommonExtension=$(python3 ./LoopOver.py $modifiedExtensions)
-#echo $mostCommonExtension
+echo $mostCommonExtension
+
+tweet=$(python3 ./markov_text.py $mostCommonExtension)
+echo $tweet
