@@ -30,11 +30,20 @@ def get_data(page, amount):
     'FROM [bigquery-public-data:github_repos.commits] LIMIT ' + str(amount) + ' OFFSET ' + str(offset))
 
     # Check if the query has finished running.
-    complete, row_count = client.check_job(job_id)
     #blululuul
-    time.sleep(5)
+    #time.sleep(5)
 
-    # Retrieve the results.
-    results = client.get_query_rows(job_id)
+    while True:
+        print("entered while")
+        # Poll for query completion.
+        complete, row_count = client.check_job(job_id)
+
+        # Retrieve the results.
+        if complete:
+            results = client.get_query_rows(job_id)
+            break;
+        time.sleep(0.2)
 
     return results
+
+print(get_data(1,1000))
