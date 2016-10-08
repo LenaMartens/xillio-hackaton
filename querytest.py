@@ -1,6 +1,7 @@
 from bigquery import get_client
 import time
-#DRIES VERSION
+
+#Script to get the data from the bigquery platform
 
 # BigQuery project id as listed in the Google Developers Console.
 project_id = 'rational-diode-145807'
@@ -21,6 +22,7 @@ json_key = 'key.json'
 client = get_client(json_key_file=json_key, readonly=True)
 
 
+# Given a page and amount, returns the github data for the Markov chain
 def get_data(page, amount):
 
     offset = (page - 1) * amount
@@ -30,10 +32,7 @@ def get_data(page, amount):
     'FROM [bigquery-public-data:github_repos.commits] LIMIT ' + str(amount) + ' OFFSET ' + str(offset))
 
 
-    # Check if the query has finished running.
-    #blululuul
-    #time.sleep(5)
-
+    # Keep checking if the query is complete, when it is, break and return the data
     while True:
         print("entered while")
         # Poll for query completion.
@@ -43,8 +42,7 @@ def get_data(page, amount):
         if complete:
             results = client.get_query_rows(job_id)
             break;
+         # Added a short sleep, so we do not make too many requests
         time.sleep(0.2)
 
     return results
-
-#print(get_data(1,1000))
