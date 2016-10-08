@@ -23,8 +23,8 @@ def train():
                     pass
 
 
-def generate():
-    text_model = json.load(open("models/py.json"))
+def generate(extension):
+    text_model = json.load(open("models/"+extension+".json"))
     model = markovify.Text.from_chain(text_model)
     print(model.make_short_sentence(120, tries=1000))
 
@@ -33,5 +33,3 @@ def generate():
 filter on None and @
 '''
 
-if __name__ == "__main__":
-    generate()
