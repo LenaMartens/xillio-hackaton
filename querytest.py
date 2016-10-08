@@ -26,7 +26,7 @@ def get_data(page, amount):
     offset = (page - 1) * amount
     # Submit an async query.
     job_id, _results = client.query('SELECT subject as commitMessage, REGEXP_EXTRACT(difference.new_path,r\'([a-zA-Z]*)\..*\') as fileName, REGEXP_EXTRACT(difference.new_path,r\'\.(.*)$\') as extension, ' +
-    'author.email == committer.email as isCommitterAuthor, committer.time_sec as commitTime, (committer.time_sec-author.time_sec) as timeDiff ' +
+    'author.email == committer.email as isCommitterAuthor, committer.time_sec as commitTime, committer.date as date, (committer.time_sec-author.time_sec) as timeDiff ' +
     'FROM [bigquery-public-data:github_repos.commits] LIMIT ' + str(amount) + ' OFFSET ' + str(offset))
 
 
