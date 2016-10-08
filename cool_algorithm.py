@@ -17,7 +17,7 @@ def list_to_matrix(data):
 
 
 def stream_data():
-    page = 1
+    page = 120
     amount = 1000
     data = get_data(page, amount)
     cl = None
@@ -29,7 +29,7 @@ def stream_data():
                 index = extension.rfind('.')
                 if index > -1:
                     extension = extension[index+1::]
-                if extension.find("/") == -1 and extension.find("\\") == -1:
+                if extension.find("/") == -1 and extension.find("aux") == -1:
                     path = "messages/" + str(extension) + ".txt"
                     file = open(path, 'a')
                     try:
