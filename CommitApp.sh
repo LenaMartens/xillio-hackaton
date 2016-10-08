@@ -26,3 +26,5 @@ echo $tweet
 git commit -m "$tweet"
 git pull
 git push
+
+python3 ./twitterBot.py $tweet
