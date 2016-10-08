@@ -4,12 +4,9 @@ echo -e "\t\t\tNo more fear of commitment...messages"
 cat bunny.txt
 echo -e "\n"
 
-#if [ 1 -eq 1 ]; then
-#	echo "Start server"
-#	python3 ./querytest.py
-#fi;
-
+# Git add has to be done first, in case of untracked files.
 git add .
+
 
 userName=$(git config user.name)
 #echo $userName
