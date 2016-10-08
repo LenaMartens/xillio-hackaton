@@ -21,9 +21,9 @@ json_key = 'key.json'
 client = get_client(json_key_file=json_key, readonly=True)
 
 # Submit an async query.
-job_id, _results = client.query('SELECT REGEXP_EXTRACT(difference.new_path,r\'([a-zA-Z]*)\..*\') as fileName, REGEXP_EXTRACT(difference.new_path,r\'\.(.*)$\') as extension, ' +
+job_id, _results = client.query('SELECT subject as commitMessage, REGEXP_EXTRACT(difference.new_path,r\'([a-zA-Z]*)\..*\') as fileName, REGEXP_EXTRACT(difference.new_path,r\'\.(.*)$\') as extension, ' +
 'author.email == committer.email as isCommitterAuthor, committer.time_sec as commitTime, (committer.time_sec-author.time_sec) as timeDiff ' +
-'FROM [bigquery-public-data:github_repos.commits] as parentTable LIMIT 1000')
+'FROM [bigquery-public-data:github_repos.commits] LIMIT 100')
 
 # Check if the query has finished running.
 complete, row_count = client.check_job(job_id)
