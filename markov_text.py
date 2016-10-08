@@ -1,17 +1,37 @@
+import json
+import os
+
 import markovify
 
-# Get raw text as string.
-with open("messages/gitignore.txt") as f:
-    text = f.read()
 
-# Build the model.
-text_model = markovify.Text(text)
+def train():
+    for root, dirs, files in os.walk("messages/"):
+        for file in files:
+            # Get raw text as string.
+            with open("messages/"+file) as f:
+                text = f.read()
+
+            # Build the model.
+            if text != "":
+                try:
+                    text_model = markovify.Text(text)
+                    extension = os.path.splitext(file)[0]
+                    print(extension)
+                    write_file = open("models/" + extension + ".json", 'w')
+                    json.dump(text_model.chain.to_json(), write_file)
+                except IndexError:
+                    pass
 
 
-# Print three randomly-generated sentences of no more than 140 characters
-for i in range(100):
-    print(text_model.make_short_sentence(120))
+def generate():
+    text_model = json.load(open("models/py.json"))
+    model = markovify.Text.from_chain(text_model)
+    print(model.make_short_sentence(120, tries=1000))
+
 
 '''
 filter on None and @
 '''
+
+if __name__ == "__main__":
+    generate()

@@ -17,7 +17,7 @@ def list_to_matrix(data):
 
 
 def stream_data():
-    page = 120
+    page = 2000
     amount = 1000
     data = get_data(page, amount)
     cl = None
