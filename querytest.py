@@ -21,7 +21,7 @@ json_key = 'key.json'
 client = get_client(json_key_file=json_key, readonly=True)
 
 # Submit an async query.
-job_id, _results = client.query('SELECT COUNT(*) FROM [bigquery-public-data:github_repos.commits]')
+job_id, _results = client.query('SELECT commits.difference FROM [bigquery-public-data:github_repos.commits] GROUP BY encoding')
 
 # Check if the query has finished running.
 complete, row_count = client.check_job(job_id)
