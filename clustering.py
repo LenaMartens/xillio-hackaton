@@ -6,7 +6,7 @@ from sklearn.cluster import Birch
 # Cluster the data for network training
 def partially_cluster(cluster, feature_matrix):
     if cluster is None:
-        cluster = Birch(branching_factor=50, n_clusters=None, threshold=0.5, compute_labels=True)
+        cluster = Birch(branching_factor=50, n_clusters=20, threshold=0.5, compute_labels=True)
     # Partially add data to train cluster
     cluster.partial_fit(feature_matrix)
     # Save cluster for future use

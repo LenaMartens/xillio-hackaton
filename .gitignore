@@ -1,2 +1,4 @@
 .idea/
 key*
+messages/
+__pycache__/
