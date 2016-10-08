@@ -2,6 +2,7 @@ import json
 import os
 
 import markovify
+import sys
 
 
 def train():
@@ -32,4 +33,9 @@ def generate(extension):
 '''
 filter on None and @
 '''
+
+if __name__ == "__main__":
+    extension = sys.argv[1]
+    generate(extension)
+
 
