@@ -9,10 +9,11 @@ if len(sys.argv) < 2 or len(sys.argv[1]) < 1:
     exit(1)
 
 file = open('twitter.config', 'r')
-consumer_key = file.readline()
-consumer_secret= file.readline()
-access_token = file.readline()
-access_token_secret = file.readline()
+configList = file.read().split('\n')
+consumer_key = configList[0]
+consumer_secret= configList[1]
+access_token = configList[2]
+access_token_secret = configList[3]
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
