@@ -25,7 +25,11 @@ def train():
 
 
 def generate(extension):
-    text_model = json.load(open("models/" + extension + ".json"))
+    try:
+        text_model = json.load(open("models/" + extension + ".json"))
+    except FileNotFoundError:
+        text_model = json.load(open("models/None.json"))
+
     model = markovify.Text.from_chain(text_model)
     found = False
     while not found:
@@ -34,11 +38,6 @@ def generate(extension):
             found = True
     print(model.make_short_sentence(120, tries=1000))
 
-
-
-'''
-filter on None and @
-'''
 if __name__ == "__main__":
     try:
         extension = sys.argv[1]

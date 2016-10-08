@@ -8,8 +8,14 @@ if len(sys.argv) < 2 or len(sys.argv[1]) < 1:
     print("error")
     exit(1)
 
-auth = tweepy.OAuthHandler('GvANtcrg1UqBshL7bR2NrztvL', 'saSGb4tqAgiicIZ9KLfrRIj3TtAs4jw3yueEmb7y9URlBpMYP7')
-auth.set_access_token('784743466135846912-FYVuAcC4nLfZA5iN85LsjsRPsnYRAMq', 'E0D5wdU37xic4pIqTFH2q4QvMKaY687jp2DkdwsFoaMFZ')
+file = open('twitter.config', 'r')
+consumer_key = file.readline()
+consumer_secret= file.readline()
+access_token = file.readline()
+access_token_secret = file.readline()
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
