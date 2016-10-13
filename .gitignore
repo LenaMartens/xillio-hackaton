@@ -3,3 +3,4 @@ key*
 messages/
 __pycache__/
 *.config
+*~
