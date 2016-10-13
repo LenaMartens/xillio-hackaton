@@ -19,7 +19,7 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-# We want trending near hilversum
+# We want trending near hilversum, place of hackaton :o|
 nearestPlace = api.trends_closest(lat=52.223756, long=5.176539)
 
 trends = api.trends_place(id = nearestPlace[0]["woeid"])

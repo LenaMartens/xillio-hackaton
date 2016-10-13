@@ -22,8 +22,9 @@ def train():
                 except IndexError:
                     pass
 
-train()
-
+sentence = "<abcd@gggg>"
+if sentence.find("@") == -1 and sentence != "None":
+    print("why")
 
 def generate(extension):
     try:

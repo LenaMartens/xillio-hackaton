@@ -20,11 +20,11 @@ modifiedExtensions=$(git status | grep 'modified\|new file\|deleted'| grep -Poi 
 mostCommonExtension=$(python3 ./LoopOver.py $modifiedExtensions)
 #echo $mostCommonExtension
 
-tweet=$(python3 ./markov_text.py $mostCommonExtension)
+tweet=$(python ./markov_text.py $mostCommonExtension)
 echo $tweet
 
 git commit -m "$tweet"
 git pull
 git push
 
-python3 ./twitterBot.py "$tweet"
+python ./twitterBot.py "$tweet"

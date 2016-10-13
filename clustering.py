@@ -1,7 +1,9 @@
 import pickle
 
 from sklearn.cluster import Birch
-
+'''
+FOR FUTURE USE: if we ever want a more sophisticated classification (now we are using file extension)
+'''
 
 # Cluster the data for network training
 def partially_cluster(cluster, feature_matrix):
