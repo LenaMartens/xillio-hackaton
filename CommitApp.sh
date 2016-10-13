@@ -9,14 +9,11 @@ git add .
 
 
 userName=$(git config user.name)
-#echo $userName
 
 # Three possible suffixes for changed files
 modifiedExtensions=$(git status | grep 'modified\|new file\|deleted'| grep -Poi '\.(.*)$')
-#echo $modifiedExtensions
 
 mostCommonExtension=$(python ./LoopOver.py $modifiedExtensions)
-#echo $mostCommonExtension
 
 tweet=$(python ./markov_text.py $mostCommonExtension)
 echo $tweet
@@ -24,4 +21,4 @@ echo $tweet
 git commit -m "$tweet"
 
 echo -e "Your changes, have been committed, go ahead and push if you're ready"
-python3 ./twitterBot.py "$tweet"
+python ./twitterBot.py "$tweet"
